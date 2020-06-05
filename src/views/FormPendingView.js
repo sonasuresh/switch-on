@@ -60,7 +60,7 @@ class FormPendingView extends Component {
 
 
     handleUpdateRequest = async (formId, status) => {
-
+        console.log(formId)
         confirmAlert({
             title: <h4>Confirm to {status === 'Approved' ? 'Approve' : 'Reject'}</h4>,
             message: "Are you sure to do this.",
@@ -105,15 +105,14 @@ class FormPendingView extends Component {
 
                     {this.state.MyPendingRequests.map((form, index) => (
                         <div key={index}>
-                            {this.state.MyPendingRequestFlag}
+                            
                             
                             <FormCard
                                 message={form.message}
                                 displayFlag={this.state.MyPendingRequestFlag ? true : false}
-                                id={form._id}
                                 createdBy={this.state.MyPendingRequestFlag? form.user.email : false}
                                 assignedTo={this.state.MyPendingRequestFlag? false : form.user.email}
-
+                                id={form._id}
                                 handleUpdateRequest={this.handleUpdateRequest}
 
                             />
@@ -142,7 +141,6 @@ class FormPendingView extends Component {
                 <div style={{ float: "right",marginRight:"210px" }}>
                     <label className="switch">
                         <input type="checkbox" onChange={(e) => {
-                            // this.state.MyPendingRequestFlag = !this.state.MyPendingRequestFlag
                             this.setState({MyPendingRequestFlag:!this.state.MyPendingRequestFlag})
                             this.handleRequest()
                         }} />
